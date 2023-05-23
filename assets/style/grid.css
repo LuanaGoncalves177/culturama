@@ -1,0 +1,112 @@
+/* Layout para celulares - mobile*/ 
+.banner {
+    display: grid;
+    gap: 1rem;
+}
+.banner img:nth-child(1){
+    grid-row: 1/2;
+    grid-column: 1/3;
+}
+.banner img:nth-child(2) {
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+.banner img:nth-child(3) {
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+.banner img:nth-child(4) {
+    grid-row: 2/4;
+    grid-column: 2/3;
+}
+.eventos__item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto repeat(2,1fr) auto;
+    grid-template-areas: /* desenha areas no grid linhas e colunas 2/4*/ 
+    "imagem imagem"
+    "none none"
+    "data data "
+    "local botao"; 
+}
+.eventos__item img{
+    grid-area: imagem;
+}
+.eventos__item h3 {
+    grid-area: none;
+    align-self: center;
+}
+.eventos__item h4 {
+    grid-area: data;
+}
+.eventos__item h5 {
+    grid-area: local;
+    align-self: end;
+}
+.eventos__item button {
+    grid-area: botao;
+}
+.agenda__item {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto 1fr;
+}
+.agenda__item img {
+    grid-column: 1/ 3;
+}
+
+/* Layout Tavlets e Desktops*/ 
+@media(min-width:720px) {
+    .banner {
+        grid-template-columns: calc(50% - 0.75rem) auto auto;
+        column-gap: 1.5rem;
+    }
+    .banner img:nth-child(1){
+        grid-row: 1/3;
+        grid-column: 1/2;
+    }
+    .banner img:nth-child(2) {
+        grid-row: 1/2;
+        grid-column: 2/3;
+    }
+    .banner img:nth-child(3) {
+        grid-row: 2/3;
+        grid-column: 2/3;
+    }
+    .banner img:nth-child(4) {
+        grid-row: 1/3;
+        grid-column: 3/4;
+    }
+    .eventos__botao, .agenda__botao {
+        align-self: self-end;
+    }
+}
+@media(min-width: 1440px) {
+    .categorias {
+        /* 1. Aplica do Display Grid no "Pai" */
+        display: grid;
+        /* 2. Determinar as posições de cada elemento no "Pai" */
+        grid-template-areas:  /* Matrix 2/3 2 col 3 linhas*/
+        "titulo titulo"
+        "lista destaque"
+        "lista imagem";
+        /* 3. Adicionar os espaçamentos no "Pai" */
+        column-gap: 1.5rem;
+        row-gap: 1rem;
+        /* 4. Calcula o tamanho de cada elemento */
+        grid-template-columns: /*calc(50% - 0.75rem) */ repeat(2, 1fr);
+        grid-template-rows: auto 1fr auto;
+    }
+    .categorias h2 {
+        grid-area: titulo;
+    }
+    .categorias__lista{
+        grid-area: lista;
+    }
+    .categorias__destaques {
+        grid-area: destaque;
+    }
+    .categorias__imagem{
+        grid-area: imagem;
+    }
+}
